@@ -1,0 +1,24 @@
+X = [.225, .262 , .217 , .240 , .230 , .229 , .235 , .217];
+Y = [.209, .205 , .196 , .210 , .202 , .207 , .224 , .223 , .220 , .201];
+
+Xm = mean(X);
+Ym = mean(Y);
+
+
+list = [X Y];
+n = 1000000;
+T = 0;
+sum = 0;
+
+for i=1:n 
+    listperm = list(randperm(length(list)));
+    Xperm = listperm(1:8);
+    Yperm = listperm(9:18);
+    Xpm = mean(Xperm);
+    Ypm = mean(Yperm);
+    T = abs(Xpm - Ypm);
+    if(T > abs(Xm - Ym))
+        sum = sum + 1;
+    end
+end
+p = sum/n
